@@ -62,7 +62,7 @@ while not game_exit:
 
     screen.fill(black)
     for rect in rect_list:
-        pygame.draw.rect(screen,random.choice(color),rect)
+        pygame.draw.rect(screen,random.choice(red),rect)
             
     pygame.draw.circle(screen, random.choice(color),[ball_pos_x,ball_pos_y], ball_radius)
     pygame.draw.rect(screen,white,(mouse_pos_x,514,paddle_width,paddle_height))
