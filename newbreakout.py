@@ -1,13 +1,14 @@
 import pygame
 import time
 import random
+
 pygame.init()
 
-white = (255,255,255)
-black = (0,0,0)
-red = (255,0,0)
-green = (0,255,0)
-blue = (0,0,255)
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0, 0)
+green = (0, 255, 0)
+blue = (0, 0, 255)
 paddle_width = 50
 paddle_height = 4
 ball_pos_x = 5
@@ -19,18 +20,17 @@ move_y = 1
 rect_list = []
 win_width = 300
 win_height = 520
-color=[red,green,blue]
+color = [red, green, blue]
 
-screen = pygame.display.set_mode((win_width,win_height))
+screen = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption('breakout')
 
 game_exit = False
-#gameloop
+# gameloop
 for j in range(5):
-        for i in range(10):
-            my_rect = pygame.Rect(30*i,5+25*j,28,24)
-            rect_list.append(my_rect)
-            
+    for i in range(10):
+        my_rect = pygame.Rect(30 * i, 5 + 25 * j, 28, 24)
+        rect_list.append(my_rect)
 
 while not game_exit:
     if ball_pos_x + ball_radius == win_width:
@@ -41,18 +41,15 @@ while not game_exit:
         move_y = -1
     if ball_pos_y - ball_radius == 0:
         move_y = 1
-    
-        
-    if ball_pos_y + ball_radius >= win_height or len(rect_list)==0:
+
+    if ball_pos_y + ball_radius >= win_height or len(rect_list) == 0:
         game_exit = True
-    
-        
+
     for rect in rect_list:
-        if rect.collidepoint(ball_pos_x,ball_pos_y-ball_radius-2):
+        if rect.collidepoint(ball_pos_x, ball_pos_y - ball_radius - 2):
             move_y = 1
             rect_list.remove(rect)
-        
-            
+
     ball_pos_x += move_x
     ball_pos_y += move_y
     time.sleep(fps)
@@ -62,14 +59,12 @@ while not game_exit:
 
     screen.fill(black)
     for rect in rect_list:
-        pygame.draw.rect(screen,random.choice(red),rect)
-            
-    pygame.draw.circle(screen, random.choice(color),[ball_pos_x,ball_pos_y], ball_radius)
-    pygame.draw.rect(screen,white,(mouse_pos_x,514,paddle_width,paddle_height))
+        pygame.draw.rect(screen, random.choice(red), rect)
+
+    pygame.draw.circle(screen, random.choice(red), [ball_pos_x, ball_pos_y], ball_radius)
+    pygame.draw.rect(screen, white, (mouse_pos_x, 514, paddle_width, paddle_height))
     pygame.display.update()
-    
 
 pygame.quit()
-
 
 quit()
