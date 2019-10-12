@@ -37,22 +37,18 @@ while not game_exit:
         move_x = -1
     if ball_pos_x - ball_radius == 0:
         move_x = 1
-    if ball_pos_y + ball_radius == win_height - 6 and ball_pos_x >= mouse_pos_x and ball_pos_x <= mouse_pos_x + paddle_width:
+    if (ball_pos_y + ball_radius == win_height - 6) and (ball_pos_x >= mouse_pos_x) and (ball_pos_x <= mouse_pos_x + paddle_width):
         move_y = -1
     if ball_pos_y - ball_radius == 0:
         move_y = 1
-    
-        
-    if ball_pos_y + ball_radius >= win_height or len(rect_list)==0:
+
+    if ball_pos_y + ball_radius >= win_height or len(rect_list) == 0:
         game_exit = True
-    
-        
+
     for rect in rect_list:
-        if rect.collidepoint(ball_pos_x,ball_pos_y-ball_radius-2):
+        if rect.collidepoint(ball_pos_x, ball_pos_y-ball_radius-2):
             move_y = 1
             rect_list.remove(rect)
-        
-            
     ball_pos_x += move_x
     ball_pos_y += move_y
     time.sleep(fps)
